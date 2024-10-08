@@ -1,6 +1,6 @@
 import './CoreConcept.css'
 
-export default function ConceptComponent(props){
+export default function CoreConcept(props){
   const {image, title, description} = props;
 
   return(
