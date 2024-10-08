@@ -1,14 +1,25 @@
+import { Fragment } from "react";
+
 export default function TubButton(props){
   const {title, selectedTopic, isSelected} = props;
 
   return(
-    <li>
+    // <>
+    //   <button 
+    //     className={isSelected ? 'active' : undefined} 
+    //     onClick={selectedTopic}
+    //   >
+    //     {title}
+    //   </button>
+    // </>
+
+    <Fragment>
       <button 
         className={isSelected ? 'active' : undefined} 
         onClick={selectedTopic}
       >
         {title}
       </button>
-    </li>
+    </Fragment>
   )
 } 
