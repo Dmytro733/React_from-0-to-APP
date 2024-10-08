@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { EXAMPLES } from "../../data";
 import TubButton from "./TubButton";
+import Section from "./Section";
 
 export default function Examples() {
   const [selectedTopic, setSelectedTopic] = useState()
@@ -20,33 +21,32 @@ export default function Examples() {
   }
 
   return(
-    <section id="examples">
-      <h2>Examples</h2>
+    <Section id="examples" title="Examples">
       <menu>
         <TubButton 
           title="Components" 
-          selectedTopic={() => setSelectedTopic('components')} 
+          onClick={() => setSelectedTopic('components')} 
           isSelected={selectedTopic === 'components'}
         />
         <TubButton 
           title="JSX" 
-          selectedTopic={() => setSelectedTopic('jsx')}
+          onClick={() => setSelectedTopic('jsx')}
           isSelected={selectedTopic === 'jsx'}
         />
         <TubButton 
           title="Props" 
-          selectedTopic={() => setSelectedTopic('props')} 
+          onClick={() => setSelectedTopic('props')} 
           isSelected={selectedTopic === 'props'}
         />
         <TubButton 
           title="State" 
-          selectedTopic={() => setSelectedTopic('state')} 
+          onClick={() => setSelectedTopic('state')} 
           isSelected={selectedTopic === 'state'}
         />
       </menu>
       <div id="tab-content">
         {contentMarkup}
       </div>
-    </section>
+    </Section>
   )
 }

@@ -1,7 +1,6 @@
 import { Fragment } from "react";
 
-export default function TubButton(props){
-  const {title, selectedTopic, isSelected} = props;
+export default function TubButton({title, isSelected, ...props}){
 
   return(
     // <>
@@ -16,7 +15,7 @@ export default function TubButton(props){
     <Fragment>
       <button 
         className={isSelected ? 'active' : undefined} 
-        onClick={selectedTopic}
+        {...props}
       >
         {title}
       </button>
