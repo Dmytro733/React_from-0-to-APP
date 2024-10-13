@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { EXAMPLES } from "../../data";
-import TubButton from "./TubButton";
 import Section from "./Section";
+import TubsWrapper from "./TubsWrapper";
+import TubButton from "./TubButton";
 
 export default function Examples() {
   const [selectedTopic, setSelectedTopic] = useState()
@@ -22,31 +23,21 @@ export default function Examples() {
 
   return(
     <Section id="examples" title="Examples">
-      <menu>
-        <TubButton 
-          title="Components" 
-          onClick={() => setSelectedTopic('components')} 
-          isSelected={selectedTopic === 'components'}
-        />
-        <TubButton 
-          title="JSX" 
-          onClick={() => setSelectedTopic('jsx')}
-          isSelected={selectedTopic === 'jsx'}
-        />
-        <TubButton 
-          title="Props" 
-          onClick={() => setSelectedTopic('props')} 
-          isSelected={selectedTopic === 'props'}
-        />
-        <TubButton 
-          title="State" 
-          onClick={() => setSelectedTopic('state')} 
-          isSelected={selectedTopic === 'state'}
-        />
-      </menu>
-      <div id="tab-content">
-        {contentMarkup}
-      </div>
+      <TubsWrapper
+        buttons={
+          Object.entries(EXAMPLES).map(([key], index) => {
+            return(
+              <TubButton 
+                key={index}
+                title={EXAMPLES[key].title}
+                onClick={() => setSelectedTopic(key)} 
+                isSelected={selectedTopic === key}
+              />
+            )
+          })
+        }
+        contentMarkup={contentMarkup}
+      />
     </Section>
   )
 }
