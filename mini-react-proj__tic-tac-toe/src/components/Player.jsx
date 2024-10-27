@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-export default function Player({initialMame, symbol}) {
+export default function Player({initialMame, symbol, isActive}) {
   const [playerName, setPlayerName] = useState(initialMame);
   const [isEditing, setIsEditing] = useState(false);
 
@@ -19,7 +19,7 @@ export default function Player({initialMame, symbol}) {
   )
 
   return(
-    <li className="player">
+    <li className={isActive ? 'active' : undefined}>
       <span className="player">
         {playerNameMurkup}
         <span className="player-symbol">{symbol}</span>

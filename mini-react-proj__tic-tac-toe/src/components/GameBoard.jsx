@@ -1,4 +1,4 @@
-import { useState } from "react"
+// import { useState } from "react"
 
 const initioalBoardGrid = [
   [null, null, null],
@@ -6,20 +6,16 @@ const initioalBoardGrid = [
   [null, null, null]
 ]
 
-export default function GameBoard() {
-  const [boardGrid, setBoardGrid] = useState(initioalBoardGrid)
+export default function GameBoard({onSelectSquere, turns}) {
+  let boardGrid = initioalBoardGrid;
 
-  function handleCellClick(rowIndex, cellIndex) {
-    /** First way to deep array clone **/
-    const newBoardGrid = JSON.parse(JSON.stringify(boardGrid))
+  for (const turn of turns) {
+    const {squere, player} = turn;
+    const {row, cell} = squere;
 
-    /** Second way to deep array clone  **/
-    // const newBoardGrid = [...boardGrid.map(innerArray => [...innerArray])] 
-
-    newBoardGrid[rowIndex][cellIndex] = 'X'
-    setBoardGrid(newBoardGrid)
+    boardGrid[row][cell] = player;
   }
-
+  
   return (
     <ol id="game-board">
       {
@@ -31,7 +27,7 @@ export default function GameBoard() {
                   row.map((playerSymbol, cellIndex) => {
                     return (
                       <li className="game-cell" key={cellIndex}>
-                        <button onClick={() => handleCellClick(rowIndex, cellIndex)}>{playerSymbol}</button>
+                        <button onClick={() => onSelectSquere(rowIndex, cellIndex)}>{playerSymbol}</button>
                       </li>
                     )
                   })
