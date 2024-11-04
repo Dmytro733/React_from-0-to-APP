@@ -1,25 +1,8 @@
-// import { useState } from "react"
-
-const initioalBoardGrid = [
-  [null, null, null],
-  [null, null, null],
-  [null, null, null]
-]
-
-export default function GameBoard({onSelectSquere, turns}) {
-  let boardGrid = initioalBoardGrid;
-
-  for (const turn of turns) {
-    const {squere, player} = turn;
-    const {row, cell} = squere;
-
-    boardGrid[row][cell] = player;
-  }
-  
+export default function GameBoard({onSelectSquere, turns, board}) {
   return (
     <ol id="game-board">
       {
-        boardGrid.map((row, rowIndex) => {
+        board.map((row, rowIndex) => {
           return (
             <li className="game-row" key={rowIndex}>
               <ol>
@@ -27,7 +10,10 @@ export default function GameBoard({onSelectSquere, turns}) {
                   row.map((playerSymbol, cellIndex) => {
                     return (
                       <li className="game-cell" key={cellIndex}>
-                        <button onClick={() => onSelectSquere(rowIndex, cellIndex)}>{playerSymbol}</button>
+                        <button 
+                          onClick={() => onSelectSquere(rowIndex, cellIndex)}
+                          disabled={!!playerSymbol}
+                        >{playerSymbol}</button>
                       </li>
                     )
                   })
