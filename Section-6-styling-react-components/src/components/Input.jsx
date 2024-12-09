@@ -1,12 +1,6 @@
 import {styled} from 'styled-components'
 
-const ControlContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  margin-bottom: 1.5rem;
-`
-const Input = styled.input`
+const StyledInput = styled.input`
   width: 100%;
   padding: 0.75rem 1rem;
   line-height: 1.5;
@@ -16,7 +10,8 @@ const Input = styled.input`
   border-radius: 0.25rem;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 `
-const Label = styled.label`
+
+const StyledLabel = styled.label`
   display: block;
   margin-bottom: 0.5rem;
   font-size: 0.75rem;
@@ -25,4 +20,18 @@ const Label = styled.label`
   text-transform: uppercase;
   color: ${({$invalid}) => $invalid ? '#f87171' : '#6b7280'};
 `
-export {ControlContainer, Input, Label}
+
+export default function CustomInput({label, $invalid, ...props}) {
+  return (
+    <p>
+      <StyledLabel $invalid={$invalid}>
+        {label}
+      </StyledLabel>
+
+      <StyledInput
+        $invalid={$invalid}
+        {...props}
+      />
+    </p>
+  )
+}

@@ -25,7 +25,7 @@ button:focus {
   outline: none;
 }
 
-header {
+/* header {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -66,7 +66,7 @@ header p {
   header h1 {
     font-size: 2.25rem;
   }
-}
+} */
 
 #auth-inputs {
   width: 100%;
@@ -79,7 +79,7 @@ header p {
   color: white;
 }
 
-.controls {
+/* .controls {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -115,7 +115,7 @@ input.invalid {
   color: #ef4444;
   border-color: #f73f3f;
   background-color: #fed2d2;
-}
+} */
 
 .actions {
   display: flex;
@@ -123,7 +123,7 @@ input.invalid {
   gap: 1rem;
 }
 
-.button {
+/* .button {
   padding: 1rem 2rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -145,4 +145,4 @@ input.invalid {
 
 .text-button:hover {
   color: #f0920e;
-}
+} */
