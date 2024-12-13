@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, StrictMode } from 'react';
 
 import Header from './components/Header.jsx';
 import UserInput from './components/UserInput.jsx';
@@ -16,7 +16,7 @@ function App() {
     setUserInput((prevUserInput) => {
       return {
         ...prevUserInput,
-        [inputIdentifier]: newValue,
+        [inputIdentifier]: +newValue,
       };
     });
   }
@@ -26,6 +26,9 @@ function App() {
       <Header />
       <UserInput userInput={userInput} onChange={handleChange} />
       <Results input={userInput} />
+      {/* <StrictMode>
+        <Results input={userInput} />
+      </StrictMode> */}
     </>
   );
 }
