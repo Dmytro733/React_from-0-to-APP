@@ -8,8 +8,33 @@ import SelectedProject from "./assets/components/SelectedProject";
 function App() {
   const [projectsState, setProjectsState] = useState({
     selectedProjectId: undefined,
-    projects: []
+    projects: [],
+    tasks: []
   });
+
+  function handleAddNewTask(text) {
+    setProjectsState(prevState => {
+      const newTask = {
+        text: text,
+        id: Math.random(),
+        projectID: prevState.selectedProjectId
+      }
+
+      return{
+        ...prevState,
+        tasks: [newTask, ...prevState.tasks],
+      }
+    })
+  }
+
+  function handleDeleteNewTask(id) {
+    setProjectsState(prevState => {
+      return{
+        ...prevState,
+        tasks: prevState.tasks.filter(task => task.id !== id)
+      }
+    })
+  }
 
   function handleStartAddProject(){
     setProjectsState(prevState => {
@@ -52,9 +77,19 @@ function App() {
     })
   }
 
+  function handleDeleteProject(){
+    setProjectsState(prevState => {
+      return{
+        ...prevState,
+        selectedProjectId: undefined,
+        projects: prevState.projects.filter(project => project.id !== prevState.selectedProjectId)
+      }
+    })
+  }
+
   const selectedProject = projectsState.projects.find(project => project.id === projectsState.selectedProjectId);
 
-  let contnet = <SelectedProject project={selectedProject} />;
+  let contnet = <SelectedProject project={selectedProject} onDelete={handleDeleteProject} onAddNewTask={handleAddNewTask} onDeleteTask={handleDeleteNewTask} tasksData={projectsState.tasks} />;
 
   if(projectsState.selectedProjectId === undefined){
     contnet = <NoProjectSelected onStartAddProject={handleStartAddProject} />
